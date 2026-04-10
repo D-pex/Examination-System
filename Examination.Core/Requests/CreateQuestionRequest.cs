@@ -4,11 +4,9 @@ using System.Text;
 
 namespace Examination.Core.Requests;
 
-public sealed record CreateQuestionRequest 
+public sealed record CreateQuestionRequest
 {
-    public sealed record SubmitTestRequest(
-    int UserId,
-    int TestId,
-    List<AnswerRequest> Answers
-);
+public int  TestId { get; set; }
+public string QuestionText { get; set; }
+List<CreateOptionRequest> Options  { get; set; }
 }

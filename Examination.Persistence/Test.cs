@@ -1,8 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using Examination.Persistence;
 
-namespace Examination.Persistence
+namespace Examination.Persistence;
 public class Test
 {
     public int Id { get; set; }
