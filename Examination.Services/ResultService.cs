@@ -3,6 +3,8 @@ using Examination.Persistence;
 using Examination.Services.Exceptions;
 using Microsoft.EntityFrameworkCore;
 
+namespace Examination.Services;
+
 public sealed class ResultService
 {
     private readonly AppDbContext _dbContext;
@@ -15,7 +17,6 @@ public sealed class ResultService
     public List<ResultDto> GetAllResults()
     {
         var results = _dbContext.UserAttempts
-            .AsNoTracking()
             .Include(ua => ua.User)
             .Include(ua => ua.Test)
             .Select(ua => new ResultDto(
@@ -36,7 +37,7 @@ public sealed class ResultService
             throw new ConflictException("Invalid UserId");
 
         var results = _dbContext.UserAttempts
-            .AsNoTracking()
+         
             .Where(ua => ua.UserId == userId)
             .Include(ua => ua.User)
             .Include(ua => ua.Test)
@@ -58,7 +59,7 @@ public sealed class ResultService
             throw new ConflictException("Invalid AttemptId");
 
         var result = _dbContext.UserAttempts
-            .AsNoTracking()
+           
             .Include(ua => ua.User)
             .Include(ua => ua.Test)
             .Where(ua => ua.Id == attemptId)

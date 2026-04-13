@@ -4,6 +4,8 @@ using Examination.Persistence;
 using Examination.Services.Exceptions;
 using Microsoft.EntityFrameworkCore;
 
+namespace Examination.Services;
+
 public sealed class QuestionService
 {
     private readonly AppDbContext _dbContext;
@@ -18,7 +20,7 @@ public sealed class QuestionService
         if (request.TestId <= 0)
             throw new ConflictException("Invalid TestId");
 
-        if (string.IsNullOrWhiteSpace(request.QuestionText))
+        if (string.IsNullOrEmpty(request.QuestionText))
             throw new ConflictException("Question text is required");
 
         var testExists = _dbContext.Tests.Any(t => t.Id == request.TestId);
@@ -63,7 +65,7 @@ public sealed class QuestionService
             throw new ConflictException("Test does not exist");
 
         var questions = _dbContext.Questions
-            .AsNoTracking()
+         
             .Where(q => q.TestId == testId)
             .Include(q => q.Options)
             .ToList();
@@ -93,10 +95,10 @@ public sealed class QuestionService
     {
         return new QuestionDto(
             q.Id,
-            q.QuestionText ?? "",
+            q.QuestionText,
             options.Select(o => new OptionDto(
                 o.Id,
-                o.OptionText ?? ""
+                o.OptionText
             )).ToList()
         );
     }

@@ -16,9 +16,7 @@ public sealed class UserService
 
     public object Register(CreateUserRequest request)
     {
-        if (string.IsNullOrWhiteSpace(request.Email) ||
-            string.IsNullOrWhiteSpace(request.Password) ||
-            string.IsNullOrWhiteSpace(request.Name))
+        if (string.IsNullOrEmpty(request.Email) || string.IsNullOrEmpty(request.Password) || string.IsNullOrEmpty(request.Name))
             throw new ConflictException("Invalid data");
 
         var exists = _dbContext.Users
@@ -49,11 +47,11 @@ public sealed class UserService
 
     public object Login(string email, string password)
     {
-        if (string.IsNullOrWhiteSpace(email) || string.IsNullOrWhiteSpace(password))
+        if (string.IsNullOrEmpty(email) || string.IsNullOrEmpty(password))
             throw new ConflictException("Invalid credentials");
 
         var user = _dbContext.Users
-            .AsNoTracking()
+          
             .FirstOrDefault(u => u.Email == email && u.Password == password);
 
         if (user == null)

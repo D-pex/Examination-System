@@ -18,7 +18,7 @@ public sealed class TestService
 
     public TestDto CreateTest(CreateTestRequest request)
     {
-        if (string.IsNullOrWhiteSpace(request.Name))
+        if (string.IsNullOrEmpty(request.Name))
             throw new ConflictException("Test name is required");
 
         var existing = _dbContext.Tests
@@ -73,7 +73,6 @@ public sealed class TestService
     {
       
         return _dbContext.Tests
-            .AsNoTracking()
             .Where(t => t.IsPublished)
             .Select(t => new TestDto(
                 t.Id,

@@ -9,7 +9,6 @@ public sealed class ReportService(AppDbContext dbContext)
     public List<ReportDto> GetTestReports()
     {
         var reports = dbContext.Tests
-            .AsNoTracking()
             .GroupJoin(
                 dbContext.UserAttempts,
                 t => t.Id,
