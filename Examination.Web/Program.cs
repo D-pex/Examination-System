@@ -17,6 +17,7 @@ builder.Services.AddScoped<QuestionService>();
 builder.Services.AddScoped<TestAttemptService>();
 builder.Services.AddScoped<ResultService>();
 builder.Services.AddScoped<ReportService>();
+builder.Services.AddScoped<UserService>();
 
 builder.Services.AddCors();
 
@@ -39,6 +40,7 @@ apiGroup.MapQuestionEndpoints();
 apiGroup.MapTestAttemptEndpoints();
 apiGroup.MapResultEndpoints();
 apiGroup.MapReportEndpoints();
+apiGroup.MapUserEndpoints();
 
 app.MapGet("/", () => $"Running in {app.Environment.EnvironmentName} right now.");
 
