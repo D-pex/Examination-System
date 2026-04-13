@@ -54,16 +54,14 @@ public sealed class TestService
         );
     }
 
-    public List<TestDto> GetAllTests()
+    public IEnumerable<TestDto> GetAllTests()
     {
-        
         return _dbContext.Tests
-            .AsNoTracking()
             .Select(t => new TestDto(
                 t.Id,
-                t.Name        ?? "",
-                t.Subject     ?? "",
-                t.Description ?? "",
+                t.Name,
+                t.Subject,
+                t.Description,
                 t.Duration,
                 t.IsPublished,
                 t.CreatedAt

@@ -9,7 +9,7 @@ public static class QuestionEndpoints
 {
     public static IEndpointRouteBuilder MapQuestionGroup(this IEndpointRouteBuilder endpoints)
     {
-        return endpoints.MapGroup("/questions");
+        return endpoints.MapGroup("/question");
     }
 
     public static IEndpointRouteBuilder MapQuestionEndpoints(this IEndpointRouteBuilder endpoints)
@@ -19,7 +19,7 @@ public static class QuestionEndpoints
         var group = endpoints.MapQuestionGroup();
 
         group.MapPost("", CreateQuestion);
-        group.MapGet("/{testId:int}", GetQuestionsByTestId);
+        group.MapGet("/test/{testId:int}", GetQuestionsByTestId);
         group.MapDelete("/{id:int}", DeleteQuestion);
 
         return endpoints;

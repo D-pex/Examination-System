@@ -2,21 +2,16 @@ using Examination.Core.Dtos;
 using Examination.Persistence;
 using Microsoft.EntityFrameworkCore;
 
-public sealed class ReportService
+namespace Examination.Services;
+
+public sealed class ReportService(AppDbContext dbContext)
 {
-    private readonly AppDbContext _dbContext;
-
-    public ReportService(AppDbContext dbContext)
-    {
-        _dbContext = dbContext;
-    }
-
     public List<ReportDto> GetTestReports()
     {
-        var reports = _dbContext.Tests
+        var reports = dbContext.Tests
             .AsNoTracking()
             .GroupJoin(
-                _dbContext.UserAttempts,
+                dbContext.UserAttempts,
                 t => t.Id,
                 ua => ua.TestId,
                 (t, attempts) => new ReportDto(

@@ -48,12 +48,12 @@ public static class TestEndpoints
         }
     }
 
-    private static Ok<IEnumerable<object>> GetAllTests(TestService service)
+    private static Ok<IEnumerable<TestDto>> GetAllTests(TestService service)
     {
         try
         {
             var result = service.GetAllTests();
-            return TypedResults.Ok<IEnumerable<object>>(result);
+            return TypedResults.Ok(result);
         }
         catch (ConflictException ex)
         {
@@ -61,12 +61,12 @@ public static class TestEndpoints
         }
     }
 
-    private static Ok<IEnumerable<object>> GetPublishedTests(TestService service)
+    private static Ok<IEnumerable<TestDto>> GetPublishedTests(TestService service)
     {
         try
         {
             var result = service.GetPublishedTests();
-            return TypedResults.Ok<IEnumerable<object>>(result);
+            return TypedResults.Ok<IEnumerable<TestDto>>(result);
         }
         catch (ConflictException ex)
         {
