@@ -1,6 +1,6 @@
 namespace Examination.Core.Requests;
 
-public sealed class SubmitTestRequest
+public sealed class CreateSubmitTestRequest
 {
     public int AttemptId { get; set; }
 }

@@ -53,7 +53,7 @@ public static class TestEndpoints
         try
         {
             var result = service.GetAllTests();
-            return TypedResults.Ok(result);
+            return TypedResults.Ok<IEnumerable<object>>(result);
         }
         catch (ConflictException ex)
         {
@@ -66,7 +66,7 @@ public static class TestEndpoints
         try
         {
             var result = service.GetPublishedTests();
-            return TypedResults.Ok(result);
+            return TypedResults.Ok<IEnumerable<object>>(result);
         }
         catch (ConflictException ex)
         {
@@ -80,9 +80,7 @@ public static class TestEndpoints
         {
             var result = service.GetTestById(id);
 
-            return result is null
-                ? TypedResults.NotFound("Test not found")
-                : TypedResults.Ok(result);
+            return TypedResults.Ok(result);
         }
         catch (NotFoundException ex)
         {

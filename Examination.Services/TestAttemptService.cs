@@ -1,8 +1,10 @@
 using Examination.Core.Dtos;
 using Examination.Core.Requests;
 using Examination.Persistence;
-using Examination.Services.Exceptions;
+using Examination.Services.Exceptions; 
 using Microsoft.EntityFrameworkCore;
+
+namespace Examination.Services;
 
 public sealed class TestAttemptService
 {
@@ -22,7 +24,7 @@ public sealed class TestAttemptService
         if (!userExists)
             throw new ConflictException("User not found");
 
-        var test = _dbContext.Tests.FirstOrDefault(t => t.Id == request.TestId);
+        var test = _dbContext.Tests.Find(request.TestId); 
         if (test == null)
             throw new ConflictException("Test not found");
 
@@ -51,7 +53,7 @@ public sealed class TestAttemptService
         );
     }
 
-    public void SubmitAnswer(SubmitAnswerRequest request)
+    public void SubmitAnswer(CreateSubmitAnswerRequest request)
     {
         if (request.AttemptId <= 0 || request.QuestionId <= 0 || request.SelectedOptionId <= 0)
             throw new ConflictException("Invalid data");

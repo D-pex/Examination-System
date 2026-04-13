@@ -1,3 +1,4 @@
+using Azure.Core;
 using Examination.Core.Requests;
 using Examination.Services;
 using Examination.Services.Exceptions;
@@ -25,7 +26,7 @@ public static class TestAttemptEndpoints
         return endpoints;
     }
 
-    private static IResult StartAttempt(TestAttemptService service, CreateUserRequest request)
+    private static IResult StartAttempt(TestAttemptService service, CreateUserAttemptRequest request)
     {
         try
         {
