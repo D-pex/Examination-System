@@ -1,5 +1,6 @@
 ﻿using Examination.Core.Dtos;
 using Examination.Core.Requests;
+using Examination.Services;
 using Examination.Services.Exceptions;
 using Microsoft.AspNetCore.Http.HttpResults;
 
@@ -7,13 +8,13 @@ namespace Examination.Web.EndPoints;
 
 public static class TestEndpoints
 {
-    // Create group
+  
     public static IEndpointRouteBuilder MapTestGroup(this IEndpointRouteBuilder endpoints)
     {
         return endpoints.MapGroup("/tests");
     }
 
-    // Map all endpoints
+
     public static IEndpointRouteBuilder MapTestEndpoints(this IEndpointRouteBuilder endpoints)
     {
         ArgumentNullException.ThrowIfNull(endpoints);
@@ -58,12 +59,12 @@ public static class TestEndpoints
         }
     }
 
-    private static Ok<IEnumerable<TestDto>> GetPublishedTests(TestService service)
+    private static IResult GetPublishedTests(TestService service)
     {
         try
         {
             var result = service.GetPublishedTests();
-            return TypedResults.Ok<IEnumerable<TestDto>>(result);
+            return TypedResults.Ok(result);
         }
         catch (ConflictException ex)
         {

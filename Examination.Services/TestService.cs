@@ -4,6 +4,8 @@ using Examination.Persistence;
 using Examination.Services.Exceptions;
 using Microsoft.EntityFrameworkCore;
 
+namespace Examination.Services;
+
 public sealed class TestService
 {
     private readonly AppDbContext _dbContext;

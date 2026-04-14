@@ -30,7 +30,7 @@ public sealed class UserService
             Name = request.Name,
             Email = request.Email,
             Password = request.Password,
-            Role = request.Role ?? "Student"
+            Role = request.Role ?? "User"
         };
 
         _dbContext.Users.Add(user);

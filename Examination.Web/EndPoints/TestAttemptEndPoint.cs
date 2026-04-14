@@ -3,7 +3,6 @@ using Examination.Services;
 using Examination.Services.Exceptions;
 
 namespace Examination.Web.EndPoints;
-
 public static class TestAttemptEndpoints
 {
     public static IEndpointRouteBuilder MapTestAttemptGroup(this IEndpointRouteBuilder endpoints)
