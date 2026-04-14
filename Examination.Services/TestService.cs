@@ -33,7 +33,7 @@ public sealed class TestService
             Name = request.Name.Trim(),
             Subject = request.Subject?.Trim() ?? "",
             Description = request.Description?.Trim() ?? "",
-            Duration = request.Duration,
+            Duration = request.Duration == default ? 90 : request.Duration,
             IsPublished = false,
             CreatedAt = DateTime.UtcNow
         };
